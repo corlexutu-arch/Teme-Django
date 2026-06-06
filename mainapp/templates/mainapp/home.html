@@ -1,0 +1,46 @@
+{% extends 'mainapp/headers.html' %}
+
+{% block content %}
+<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-white shadow-sm border">
+    <div class="col-lg-8 px-0">
+        <h1 class="display-4 fst-italic fw-bold">Hello World!!!</h1>
+        <p class="lead my-3">Nu te sfii sa cauti printre filmele si cartile din colectie.</p>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-warning text-dark fw-bold py-3">
+        <h5 class="mb-0">🎞️ Listă Filme Recomandate</h5>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0 align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-4">Titlu Film</th>
+                        <th>Gen</th>
+                        <th>An Lansare</th>
+                        <th class="text-end pe-4">Actiuni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for film in filme %}
+                    <tr>
+                        <td class="fw-bold ps-4 text-primary">{{ film.title }}</td>
+                        <td><span class="badge bg-secondary">{{ film.genre }}</span></td>
+                        <td>{{ film.release_date.year }}</td>
+                        <td class="text-end pe-4">
+                            <a href="{% url 'm_details' film.id %}" class="btn btn-sm btn-outline-primary">Vezi detalii</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">Nu există filme noi.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

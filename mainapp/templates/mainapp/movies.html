@@ -1,0 +1,22 @@
+{% extends 'mainapp/headers.html' %}
+
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white py-3">
+        <h4 class="mb-0 fw-bold">🎬 Toate Filmele</h4>
+    </div>
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            {% for film in filme %}
+            <div class="list-group-item d-flex justify-content-between align-items-center py-3 px-2">
+                <div>
+                    <h5 class="mb-1 fw-bold text-dark">{{ film.title }}</h5>
+                    <small class="text-muted">Lansat în: {{ film.release_date.year }}</small>
+                </div>
+                <a href="{% url 'm_details' film.id %}" class="btn btn-primary btn-sm">Deschide Film</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

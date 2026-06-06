@@ -1,0 +1,45 @@
+{% extends 'mainapp/headers.html' %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-md-7">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-success text-white py-3">
+                <h5 class="mb-0 fw-bold">📚 Colectie carti</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush">
+                    {% for carte in carti %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center py-3 px-4">
+                        <div>
+                            <h6 class="mb-0 fw-bold text-dark">{{ carte.title }}</h6>
+                            <small class="text-muted">Autor: {{ carte.author }}</small>
+                        </div>
+                        <a href="{% url 'b_details' carte.id %}" class="btn btn-sm btn-success">Detalii</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card shadow-sm border-start border-4 border-success h-100">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 text-success fw-bold">🎯 Selectate: Anul 2004</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for carte in carti_f %}
+                    <li class="list-group-item px-0 py-2">
+                        <span class="text-success me-2">✔</span> <strong>{{ carte.title }}</strong>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item text-muted text-center py-3">Nicio carte salvată din anul 2004.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
